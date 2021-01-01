@@ -1,7 +1,6 @@
 import os
 from flask import Flask, request, render_template, url_for, jsonify
 from multiprocessing import Value
-from database import readData
 
 counter = Value('i', 0)
 scoreCounter = Value('i', -5)
@@ -9,7 +8,22 @@ questionCounter = Value('i', 0)
 
 app = Flask(__name__)
 
-quesData = readData()
+quesData = {
+    "যাৰ ঘৰ নাই ।.":  "অঘৰী",
+    "গৰু বন্ধা ঘৰ ?": "গোহলি",
+    "যি‌ গৰুৰ শিং নাই": "লাও মুৰা",
+    "যি‌ তিৰোতাৰ শ্বামী‌ নাই": "বিধবা‌",
+    "যাৰ মৰন নাই": "অমৰন",
+    "যাৰ মাক নাই": "মাউৰা",
+    "খাবলৈ আনা কলপুলি": "পচলা",
+    "যাক‌ পাবলৈ টান": "দুৰ্লভ",
+    "যিয়ে অভিনয় কৰে": "অভিনেতা",
+    "যিয়ে কানেৰে নুশুনে": "কলাা",
+    "যিয়ে ঈশ্বৰক বিশ্বাস কৰে": "অস্থিক",
+    "যিয়ে ঈশ্বৰক বিশ্বাস নকৰে": "নাস্তিক",
+    "যিয়ে আনৰ ভাল দেখিব নোৱাৰে": "পৰশ্ৰীকাতৰ",
+    "যিয়ে চকুৰে নেদেখে": "পৰশ্ৰীকাতৰ"
+}
 
 
 def getScore():
@@ -18,24 +32,20 @@ def getScore():
         score = scoreCounter.value
     return score
 
-
 def getQuestion():
-    with questionCounter.get_lock():
-        index = questionCounter.value
-        questionCounter.value += 1
-    # quiz = list(quesData.keys())[index]
-    quiz = quesData[index]
-    return quiz['q']
-
+  with questionCounter.get_lock():
+    index = questionCounter.value
+    questionCounter.value += 1
+  quiz = list(quesData.keys())[index]
+  return quiz
 
 @app.route("/try-again", methods=['GET', 'POST'])
 def tryAgain():
-    with questionCounter.get_lock():
+  with questionCounter.get_lock():
         questionCounter.value -= 1
-    with scoreCounter.get_lock():
+  with scoreCounter.get_lock():
         scoreCounter.value -= 5
-    return game()
-
+  return game()
 
 @app.route("/resetCount", methods=['GET', 'POST'])
 def resetCounter():
@@ -49,7 +59,6 @@ def resetCounter():
 def home():
     return render_template('index.html')
 
-
 @app.route("/game", methods=['GET', 'POST'])
 def game():
     with counter.get_lock():
@@ -59,15 +68,11 @@ def game():
         quesIdx = questionCounter.value
     return render_template('game.html', data=getQuestion(), count=out, quesIdx=quesIdx, score=getScore())
 
-
 @app.route('/guess', methods=['POST'])
 def result():
-    with questionCounter.get_lock():
-        index = questionCounter.value
-    print(quesData[index]["a"])
-    if request.form['guess'] == quesData[index]["a"]:
+    if request.form['guess'] == quesData[request.form['question']]:
         with counter.get_lock():
-            counter.value = 0
+          counter.value = 0
         answer = "সঠিক উত্তৰ ।"
         return render_template("result.html", answer=answer, correct=1)
     else:
