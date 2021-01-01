@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="d-flex justify-content-center align-content-center h-100" style="margin-top: 250px">
+
+  <div class="p-3">
+    {% if correct %}
+    <div class="d-flex">
+
+      <h3 class="text-success mr-4">{{answer}}</h3>
+      <a href="/game" class="btn btn-info">পৰবৰ্তী প্ৰশ্ন</a>
+    </div>
+    {% else %}
+    <div class="d-flex">
+      <h3 class="text-danger mr-4">{{answer}}</h3>
+      <a href="/try-again" class="btn btn-info">পুননৰ চেষ্টা কৰা</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

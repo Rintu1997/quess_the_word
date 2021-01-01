@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="p-3">
+{% if quesIdx > 5 %}
+<h4>স্কোৰ: {{score}}</h4>
+{%else%}
+
+  {% if count > 3 %}
+  <div class="d-flex mr-auto">
+    <h1 class="text-danger">No attempts left</h1>
+    <a class="ml-3 btn btn-primary" href="/resetCount">পুনৰসংহতি কৰক</a>
+  </div>
+  {%else%}
+    <div class="row d-flex p-3">
+      <div class="d-flex mr-auto">
+        <h4>প্ৰচেষ্টাৰ সংখ্যা: {{count}}</h4>
+        <a class="ml-3 btn btn-primary" href="/resetCount">পুনৰসংহতি কৰক</a>
+      </div>
+      <h4>স্কোৰ: {{score}}</h4>
+
+    </div>
+  <form action='/guess' method='post'>
+
+    <div class="" style="margin-top: 140px">
+      <div class="form-group text-center">
+        <label class="col-form-label font-weight-bold" style="font-size: 1.6rem;">
+          {{quesIdx}}. ইঙ্গিত : {{data}}
+        </label>
+        <input type="hidden" class="form-control" name="question" id="question" value='{{data}}'>
+      </div>
+      <br />
+      <br />
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label font-weight-bold" style="font-size: 1.6rem;">
+          অনুমান কৰক :
+        </label>
+        <div class="col-sm-7">
+          <input type='text' class="form-control border-danger  " name='guess'>
+        </div>
+        <div class="col-sm-2">
+          <input class="btn btn-primary" type='submit' value='সুমুৱাওক'>
+        </div>
+      </div>
+    </div>
+  </form>
+  {%endif%}
+
+{%endif%}
+</div>
+{% endblock %}
