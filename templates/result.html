@@ -4,17 +4,60 @@
 
   <div class="p-3">
     {% if correct %}
-    <div class="d-flex">
+    <div style="margin-top: 20%">
 
-      <h3 class="text-success mr-4">{{answer}}</h3>
-      <a href="/game" class="btn btn-info">পৰবৰ্তী প্ৰশ্ন</a>
+      <h3 class="text-success font-weight-bold mr-4" style="font-size: 2rem;">{{answer}}</h3>
+      <br />
+      <a href="/game" class="btn btn-block btn-lg btn-outline-success" style="font-size: 1.5rem;">পৰবৰ্তী প্ৰশ্ন</a>
+
+      <img src="../static/assets/illustration6.png" height="500px" 
+
+    style="
+    position: absolute;
+    right: 10%;
+    bottom: 20%;
+    "
+    
+    />
+
+      <img src="../static/assets/illustration7.png" height="600px" 
+
+    style="
+    position: absolute;
+    left: 12%;
+    bottom: 0px;
+    "
+    
+    />
     </div>
     {% else %}
-    <div class="d-flex">
-      <h3 class="text-danger mr-4">{{answer}}</h3>
-      <a href="/try-again" class="btn btn-info">পুননৰ চেষ্টা কৰা</a>
+    <div style="margin-top: 20%">
+      <h3 class="text-danger font-weight-bold mr-4 pl-3" style="font-size: 2rem;">{{answer}}</h3>
+      <br />
+      <a href="/try-again" class="btn btn-block btn-lg btn-outline-danger" style="font-size: 1.5rem;">পুননৰ চেষ্টা কৰা</a>
     </div>
+    <img src="../static/assets/illustration4.png" height="700px" 
+
+    style="
+    position: absolute;
+    right: 8%;
+    bottom: 0px;
+    "
+    
+    />
+    <img src="../static/assets/illustration5.png" height="500px" 
+
+    style="
+    position: absolute;
+    left: 10%;
+    bottom: 0px;
+    "
+    
+    />
     {% endif %}
   </div>
+
+
+
 </div>
 {% endblock %}

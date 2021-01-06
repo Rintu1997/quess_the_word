@@ -1,50 +1,131 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="p-3">
-{% if quesIdx > 5 %}
-<h4>স্কোৰ: {{score}}</h4>
+<div style="padding: 5% 12%; margin-top: 23%">
+{% if quesIdx > quesLen -1 %}
+<div class="w-100 text-center">
+
+  <h1 class="text-info font-weight-bold">অতি উত্তম ! আপোনাৰ স্কোৰ হল - {{score}}</h1>
+  <br />
+  <a href="/game" class="btn btn-info"
+style="
+width: 70%;
+font-size: 1.6rem;
+margin: -15px;
+"
+>পুনৰ খেলক</a>
+</div>
+
+<img src="../static/assets/illustration11.png" height="700px" 
+    
+style="
+position: absolute;
+left: 0%;
+bottom: 12%;
+"
+
+/>
+
+<img src="../static/assets/illustration10.png" height="800px" 
+    
+style="
+position: absolute;
+right: 0%;
+bottom: 10%;
+"
+
+/>
+
+
+
+
 {%else%}
 
   {% if count > 3 %}
-  <div class="d-flex mr-auto">
-    <h1 class="text-danger">No attempts left</h1>
-    <a class="ml-3 btn btn-primary" href="/resetCount">পুনৰসংহতি কৰক</a>
+  <div class="d-flex" style="margin-left: 25%;">
+    <div>
+      <h1 class="text-danger font-weight-bold">প্ৰচেষ্টা বাকী নাই</h1>
+      <br />
+      <a class="ml-3 btn btn-block btn-lg btn-outline-danger" href="/resetCount" style="font-size: 1.5rem;">পুনৰসংহতি কৰক</a>
+    </div>
   </div>
+
+  <img src="../static/assets/illustration8.png" height="700px" 
+
+  style="
+  position: absolute;
+  left: 10px;
+  bottom: 0px;
+  "
+  
+  />
+  
+    <img src="../static/assets/illustration9.png" height="500px" 
+    
+    style="
+    position: absolute;
+    right: 0%;
+    bottom: 30%;
+    "
+    
+    />
+
   {%else%}
     <div class="row d-flex p-3">
       <div class="d-flex mr-auto">
-        <h4>প্ৰচেষ্টাৰ সংখ্যা: {{count}}</h4>
-        <a class="ml-3 btn btn-primary" href="/resetCount">পুনৰসংহতি কৰক</a>
+        <h4 class="font-weight-bold mt-1">প্ৰচেষ্টাৰ সংখ্যা: {{count}}</h4>
+        <a class="ml-3 btn btn-primary" href="/resetCount" style="font-size: 1.2rem">পুনৰসংহতি কৰক</a>
       </div>
-      <h4>স্কোৰ: {{score}}</h4>
+      <h4 class="font-weight-bold">স্কোৰ: {{score}}</h4>
 
     </div>
   <form action='/guess' method='post'>
 
-    <div class="" style="margin-top: 140px">
+    <div class="" style="margin-top: 60px">
       <div class="form-group text-center">
-        <label class="col-form-label font-weight-bold" style="font-size: 1.6rem;">
-          {{quesIdx}}. ইঙ্গিত : {{data}}
+        <label class="col-form-label font-weight-bold" style="font-size: 2rem;">
+          {{quesIdx+1}}. ইঙ্গিত : {{data}}
         </label>
         <input type="hidden" class="form-control" name="question" id="question" value='{{data}}'>
       </div>
-      <br />
-      <br />
       <div class="form-group row">
-        <label class="col-sm-3 col-form-label font-weight-bold" style="font-size: 1.6rem;">
+        <label class="col-sm-4 col-form-label font-weight-bold" style="font-size: 2rem;">
           অনুমান কৰক :
         </label>
-        <div class="col-sm-7">
-          <input type='text' class="form-control border-danger  " name='guess'>
-        </div>
-        <div class="col-sm-2">
-          <input class="btn btn-primary" type='submit' value='সুমুৱাওক'>
+          <input type='text' class="mt-2 p-3 col-sm-6 form-control border-primary" name='guess' style="font-size: 1.4rem">
+        
+        <div class="mt-2 col-sm-2">
+          <input class="btn btn-outline-primary" type='submit' value='সুমুৱাওক' style="font-size: 1.6rem">
         </div>
       </div>
     </div>
   </form>
+
+  
+  <img src="../static/assets/illustration2.png" height="700px" 
+
+  style="
+  position: absolute;
+  left: -80px;
+  bottom: 0px;
+  "
+  
+  />
+  
+  <img src="../static/assets/illustration3.png" height="500px" 
+  
+  style="
+  position: absolute;
+  right: 3%;
+  bottom: 30%;
+  "
+  
+  />
+
   {%endif%}
 
 {%endif%}
+
+
+
 </div>
 {% endblock %}

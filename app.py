@@ -9,7 +9,7 @@ questionCounter = Value('i', 0)
 app = Flask(__name__)
 
 quesData = {
-    "যাৰ ঘৰ নাই ।.":  "অঘৰী",
+    "যাৰ ঘৰ নাই ।.":  "   ",
     "গৰু বন্ধা ঘৰ ?": "গোহলি",
     "যি‌ গৰুৰ শিং নাই": "লাও মুৰা",
     "যি‌ তিৰোতাৰ শ্বামী‌ নাই": "বিধবা‌",
@@ -57,6 +57,9 @@ def resetCounter():
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
+    counter.value = 0
+    scoreCounter.value = -5
+    questionCounter.value = 0
     return render_template('index.html')
 
 @app.route("/game", methods=['GET', 'POST'])
@@ -66,7 +69,7 @@ def game():
         out = counter.value
     with questionCounter.get_lock():
         quesIdx = questionCounter.value
-    return render_template('game.html', data=getQuestion(), count=out, quesIdx=quesIdx, score=getScore())
+    return render_template('game.html', data=getQuestion(), count=out, quesIdx=quesIdx, quesLen=len(quesData.keys()), score=getScore())
 
 @app.route('/guess', methods=['POST'])
 def result():
@@ -76,7 +79,7 @@ def result():
         answer = "সঠিক উত্তৰ ।"
         return render_template("result.html", answer=answer, correct=1)
     else:
-        answer = "ভুল উত্তৰ, খেল অতিৰিক্ত।"
+        answer = "ভুল উত্তৰ ।"
         return render_template("result.html", answer=answer, correct=0)
 
 

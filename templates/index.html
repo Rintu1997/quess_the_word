@@ -1,15 +1,51 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="p-3">
-  <h2>Rules and regulations</h2>
-  <p>Players will be needed to attempt the answers in Assamese.<br />
-    Each player will have 3 chances to attempt the answer and if
-    failed the player will lose the game directly resulting to end the game.
-    However, the player can restart once again if happened to lose.</p>
-  <h2>নিয়ম নীতি</h2>
-  <p>খেলুৱৈ সকলে অসমীয়াত উত্তৰ দিবলৈ চেষ্টা কৰিব লাগিব। <br />
+<div >
+<div class="row">
+  <div class="col-8" style="margin-top: 3%;">
+    <div class="row">
+      <h1 class="font-weight-bolder" style="font-size: 4rem;">
+        শব্দ অনুমান ৰ খেল
+      </h1>
+    </div>
+<br/>
+<br/>
+
+<div class="row">
+
+    <h2 class="font-weight-bold">Rules and regulations</h2>
+    <p style="font-size: 1.2rem;">Players will be needed to attempt the answers in Assamese.<br />
+      Each player will have 3 chances to attempt the answer and if
+      failed the player will lose the game directly resulting to end the game.
+      However, the player can restart once again if happened to lose.</p>
+</div>
+<br/>
+
+<div class="row">
+  <h2 class="font-weight-bold">নিয়ম নীতি</h2>
+</div>
+<div class="row">
+
+  <p style="font-size: 1.2rem;">খেলুৱৈ সকলে অসমীয়াত উত্তৰ দিবলৈ চেষ্টা কৰিব লাগিব। <br />
     প্ৰত্যেক খেলুৱৈ উত্তৰ দিবৰ বাবে তিনিটাকৈ সুবিধা দিয়া হব। <br />
     যদিহে ব্যৰ্থ হয় তেনেহলে প্ৰত্যক্ষ ভাবে খেলুৱৈ জনে খেলত পোণচাতে হাৰিব যাব। <br />
     যিয়ে নহওঁক খেলুৱৈ জনে পুনৰ খেল আৰম্ভ কৰিব পাৰিব।</p>
+  </div>
+
+<br/>
+
+<a href="/game" class="btn btn-lg btn-block btn-outline-primary"
+style="
+margin: -15px;
+"
+>আৰম্ভ কৰা</a>
+</div>
+<div class="col-4">
+<div class="illustration">
+<img src="../static/assets/illustration.png" height="500px" />
+</div>
+</div>
+
+
 </div>
 {% endblock %}
